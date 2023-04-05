@@ -1,6 +1,6 @@
 import sanityClient from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url'
-import build from 'next/dist/build';
+import imageUrlBuilder from '@sanity/image-url';
+
 
 export const client = sanityClient({
     projectId: 'izr3mr25',
