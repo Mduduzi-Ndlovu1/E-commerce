@@ -2,11 +2,13 @@ import React from 'react'
 
 import { client } from 'lib/client';
 import { Product, FooterBanner, HeroBanner } from 'components';
+import banner from 'nathis-site/schemas/banner';
 
 
 const Home = ({products,bannerData}) => (
     <div>
-      <HeroBanner heroBanner={ !bannerData.length && bannerData[0]} />
+      <HeroBanner herobanner = {(bannerData.length !== 0) && bannerData[0] } />
+      {console.log(bannerData)}
 
       <div className='products-heading'> 
         <h2>
