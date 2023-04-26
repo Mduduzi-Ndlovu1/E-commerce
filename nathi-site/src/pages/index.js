@@ -2,13 +2,14 @@ import React from 'react'
 
 import { client } from 'lib/client';
 import { Product, FooterBanner, HeroBanner } from 'components';
-import banner from 'nathis-site/schemas/banner';
 
 
-const Home = ({products,bannerData}) => (
+
+
+const Home = ({ products , bannerData }) => (
     <div>
-      <HeroBanner herobanner = {(bannerData.length !== 0) && bannerData[0] } />
-      {console.log(bannerData)}
+      <HeroBanner heroBanner = {(bannerData.length !== 0) && bannerData[0] } />
+
 
       <div className='products-heading'> 
         <h2>
@@ -17,17 +18,16 @@ const Home = ({products,bannerData}) => (
         <p>Speakers of many variations</p>
       
       </div>
-
+{/* this div isnt showing up */}
       <div className='products-container'>
-        {products?.map((product) => product.name
-        )}
+        {products?.map((product) => <Product key={product._id} product={product}/>)}
       </div>
 
-      <FooterBanner/>
+      <FooterBanner footerBanner = {bannerData && bannerData[0] }/>
     
     </div>
   );
-  export const getServerSideProps =async () =>{
+  export const getServerSideProps = async () =>{
     // form a sanity query
 
     const query = '*[_type == "product"]';
@@ -37,7 +37,7 @@ const Home = ({products,bannerData}) => (
     const bannerData = await client.fetch(bannerQuery);
 
     return {
-      props: {products,bannerData}
+      props: { products , bannerData }
     }
   }
 
